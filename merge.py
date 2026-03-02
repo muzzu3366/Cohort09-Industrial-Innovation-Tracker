@@ -1,11 +1,11 @@
 import pandas as pd
 
-# Helper to load a World Bank CSV and reshape it into a clean long format
+#to load a World Bank CSV and reshape it into a clean long format
 def load_and_convert(file_path, value_name):
     # World Bank files include metadata at the top, so we skip those rows
     df = pd.read_csv(file_path, skiprows=4)
 
-    # Keep country info plus columns that are actual years
+    # Keeping the country info plus columns that are actual years
     year_columns = [col for col in df.columns if col.isdigit()]
     df = df[['Country Name', 'Country Code'] + year_columns]
 
@@ -58,3 +58,4 @@ merged_df = merged_df.dropna()
 merged_df.to_csv('Industrial_Innovation_Tracker.csv', index=False)
 
 print("Industrial_Innovation_Tracker.csv created successfully")
+
